@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InputController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('template');
-});
+// Route::get('/', function () {
+//     return view('daftarbarang');
+// });
+
+
+Route::get('/inputservice', [InputController::class, 'index']);
