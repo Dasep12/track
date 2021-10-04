@@ -23,7 +23,20 @@ class SaranaFactory extends Factory
     {
         return [
             //
-            ''
+            'sarana' => $this->faker->randomElement([
+                "SCANNER",
+                "CPU",
+                "MONITOR",
+                "WACOM"
+            ]),
+            'aktiva' => "C01." . $this->faker->latitude($min = 1, $max = 90),
+            'sn' => $this->faker->swiftBicNumber,
+            'tahun_perolehan' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'status' => $this->faker->randomElement([
+                "SERVICE",
+                "AKTIF"
+            ]),
+            'kode_dc' => "G001"
         ];
     }
 }
