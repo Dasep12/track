@@ -240,6 +240,7 @@
   <script src="/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="/dist/js/demo.js"></script>
+  <script type="text/javascript" src="/dist/js/sweetalert.min.js"></script>
   <script src="/dist/js/main.js"></script>
   <!-- bootstrap datepicker -->
   <script src="/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>

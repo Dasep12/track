@@ -21,6 +21,7 @@ $(function () {
                     })
                 }else {
                     console.log(data.pesan);
+                    swal(data.pesan);
                     $("#inputService")[0].reset();
                 }
             },
@@ -29,4 +30,5 @@ $(function () {
             }
         })
     })
+
 })
