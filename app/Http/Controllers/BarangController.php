@@ -10,7 +10,7 @@ class BarangController extends Controller
     public function barang()
     {
         $pge = $_GET['page'];
-        $page = 0;
+        $page = null;
         if ($pge == 1) {
             $page = 1;
         } else if ($pge == 2) {
@@ -19,6 +19,7 @@ class BarangController extends Controller
             $page = 3;
         } else if ($pge == 4) {
             $page = 4;
+        } else {
         }
 
         $data = [
