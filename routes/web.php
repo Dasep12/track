@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\InputController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/inputservice', [InputController::class, 'index']);
 Route::post('/inputservice', [InputController::class, 'store']);
+Route::get('/barang', [BarangController::class, 'barang']);

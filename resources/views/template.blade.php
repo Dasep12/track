@@ -155,8 +155,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Input Permintaan Service</a></li>
+              <li><a href="/barang"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
+              <li><a href="/inputservice"><i class="fa fa-circle-o"></i> Input Permintaan Service</a></li>
             </ul>
           </li>
           <!-- <li class="treeview">

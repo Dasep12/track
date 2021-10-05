@@ -1,12 +1,25 @@
 @extends('template')
 
 
-@section
+@section('content')
 <div class="row">
   <div class="col-xs-12">
-    <div class="box">
+    <div class="box box-primary">
+      <ul class="nav nav-pills">
+        <li class="nav-item ">
+          <a class="nav-link  text-white" href="#">Menunggu Approved ( 10 ) {{ $page }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Antrian Service ( 10 )</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Proses Service ( 10 )</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Selesai Service ( 10 )</a>
+        </li>
+      </ul>
       <div class="box-header">
-        <h3 class="box-title">Data Table With Full Features</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
