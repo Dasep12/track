@@ -10,38 +10,38 @@
         @php($role = 1)
         @if($role == 1 || $role == 2)
         <li class="nav-item @if($page == 1) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=1">Menunggu Approved ( )</a>
+          <a class="nav-link" href="/barang?page=1">Menunggu Approved ( {{ $countService }} )</a>
         </li>
         <li class="nav-item @if($page == 2) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=2">Approved ( )</a>
+          <a class="nav-link" href="/barang?page=2">Approved ( {{ $countService1 }} )</a>
         </li>
         <li class="nav-item @if($page == 3) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=3">Antrian Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=3">Antrian Service ( {{ $countService2 }} )</a>
         </li>
         <li class="nav-item @if($page == 4) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=4">Proses Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=4">Proses Service ( {{ $countService3 }} )</a>
         </li>
         <li class="nav-item @if($page == 5) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=5">Selesai Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=5">Selesai Service ( {{ $countService4 }} )</a>
         </li>
         <li class="nav-item @if($page == 6) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=6">Sudah Di Kirim ( 10 )</a>
+          <a class="nav-link" href="/barang?page=6">Sudah Di Kirim ( {{ $countService5 }} )</a>
         </li>
         @elseif($role == 3)
         <li class="nav-item @if($page == 2) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=2">Approved ( )</a>
+          <a class="nav-link" href="/barang?page=2">Approved ( {{ $countService1 }} )</a>
         </li>
         <li class="nav-item @if($page == 3) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=3">Antrian Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=3">Antrian Service ( {{ $countService2 }} )</a>
         </li>
         <li class="nav-item @if($page == 4) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=4">Proses Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=4">Proses Service ( {{ $countService3 }} )</a>
         </li>
         <li class="nav-item @if($page == 5) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=5">Selesai Service ( 10 )</a>
+          <a class="nav-link" href="/barang?page=5">Selesai Service ( {{ $countService4 }} )</a>
         </li>
         <li class="nav-item @if($page == 6) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=6">Sudah Di Kirim ( 10 )</a>
+          <a class="nav-link" href="/barang?page=6">Sudah Di Kirim ( {{ $countService5 }} )</a>
         </li>
         @endif
 
@@ -69,7 +69,10 @@
               <td>{{ $no++ }}</td>
               <td>
                 @if($role == 1 && $brg->status_approved == "Menunggu Approved" )
-                <a href="#" class="tip btn btn-success btn-sm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
+                <form action="/updateStatusbarang/{{ $brg->id }}" method="post">
+                  @csrf
+                  <button class="tip btn btn-success btn-sm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </button>
+                </form>
                 @endif
                 <!-- jika role 2 dan barang status approved masih menunggu -->
                 <!-- maka tanda hapus aktif -->
@@ -161,5 +164,28 @@
       }
     });
   }
+
+  // update status barang dengan kirim parameter lewat sweet alert
+  $('.show_confirm').click(function(event) {
+
+    var form = $(this).closest("form");
+
+    var name = $(this).data("name");
+
+    event.preventDefault();
+
+    swal({
+      title: `Are you sure you want to delete this record?`,
+      text: "If you delete this, it will be gone forever.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        form.submit();
+      }
+    });
+
+  });
 </script>
 @endsection

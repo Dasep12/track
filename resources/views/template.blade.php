@@ -69,6 +69,33 @@
       top: 10px;
       text-decoration: none
     }
+
+    /* versi button */
+    button.tip {
+      text-decoration: none
+    }
+
+    button.tip:hover {
+      cursor: help;
+      position: relative
+    }
+
+    button.tip span {
+      display: none
+    }
+
+    button.tip:hover span {
+      padding: 5px 20px 5px 5px;
+      display: block;
+      z-index: 100;
+      background: #000 no-repeat 100% 5%;
+      left: 0px;
+      margin: 10px;
+      width: 250px;
+      position: absolute;
+      top: 10px;
+      text-decoration: none
+    }
   </style>
 </head>
 
@@ -240,8 +267,7 @@
       <div class="pull-right hidden-xs">
         <b>Version</b> 2.4.0
       </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
+      <strong>Copyright &copy; 2021 <a href="#">Support </a> </strong>DC Jakarta 1
     </footer>
 
 

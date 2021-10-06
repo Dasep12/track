@@ -23,4 +23,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/inputservice', [InputController::class, 'index']);
 Route::post('/inputservice', [InputController::class, 'store']);
 Route::get('/barang', [BarangController::class, 'barang']);
+Route::post('/updateStatusbarang/{id}', [BarangController::class, 'updateBarang'])->name('updateBarang');
 Route::get('/loadModalBarang', [BarangController::class, 'detailModal'])->name('loadModal');

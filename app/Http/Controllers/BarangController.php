@@ -27,9 +27,28 @@ class BarangController extends Controller
             $status_approved = "Sudah Di Kirim";
         }
         $barang = Service::where('status_approved', $status_approved)->where('kode_dc', $kodeDC)->get();
+
+        $status = [
+            "Menunggu Approved",  "Approved",  "Dalam Antrian", "Proses Service", "Selesai Service", "Sudah Di Kirim"
+        ];
+
+        $Jumlah0 = Service::where('status_approved', $status[0])->where('kode_dc', $kodeDC)->get();
+        $Jumlah1 = Service::where('status_approved', $status[1])->where('kode_dc', $kodeDC)->get();
+        $Jumlah2 = Service::where('status_approved', $status[2])->where('kode_dc', $kodeDC)->get();
+        $Jumlah3 = Service::where('status_approved', $status[3])->where('kode_dc', $kodeDC)->get();
+        $Jumlah4 = Service::where('status_approved', $status[4])->where('kode_dc', $kodeDC)->get();
+        $Jumlah5 = Service::where('status_approved', $status[5])->where('kode_dc', $kodeDC)->get();
+
+
         $data = [
             'page'               => $pge,
             'daftar_barang'      => $barang,
+            'countService'       => $Jumlah0->count(),
+            'countService1'      => $Jumlah1->count(),
+            'countService2'      => $Jumlah2->count(),
+            'countService3'      => $Jumlah3->count(),
+            'countService4'      => $Jumlah4->count(),
+            'countService5'      => $Jumlah5->count(),
         ];
         return view('daftarbarang', $data);
     }
@@ -42,5 +61,11 @@ class BarangController extends Controller
             'barang'  => Service::find($id)
         ];
         return view('modal_detail_barang', $data);
+    }
+
+    //update status barang
+    public function updateBarang()
+    {
+
     }
 }
