@@ -23,6 +23,7 @@ $(function () {
                     console.log(data.pesan);
                     swal(data.pesan);
                     $("#inputService")[0].reset();
+                   // window.reload();
                 }
             },
             complete : function(){

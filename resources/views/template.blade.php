@@ -41,6 +41,35 @@
   <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- jQuery 3 -->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <style>
+    a.tip {
+      text-decoration: none
+    }
+
+    a.tip:hover {
+      cursor: help;
+      position: relative
+    }
+
+    a.tip span {
+      display: none
+    }
+
+    a.tip:hover span {
+      padding: 5px 20px 5px 5px;
+      display: block;
+      z-index: 100;
+      background: #000 no-repeat 100% 5%;
+      left: 0px;
+      margin: 10px;
+      width: 250px;
+      position: absolute;
+      top: 10px;
+      text-decoration: none
+    }
+  </style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -155,7 +184,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/barang"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
+              <li><a href="/barang?page=1"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
               <li><a href="/inputservice"><i class="fa fa-circle-o"></i> Input Permintaan Service</a></li>
             </ul>
           </li>
@@ -223,8 +252,7 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery 3 -->
-  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
   <!-- Bootstrap 3.3.7 -->
   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Select2 -->

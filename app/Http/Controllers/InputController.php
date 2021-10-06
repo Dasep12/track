@@ -14,7 +14,7 @@ class InputController extends Controller
     public function index()
     {
         $data = [
-            'data'   => Sarana::where('kode_dc', "G001")->get()
+            'data'   => Sarana::where('kode_dc', "G001")->where('status', 'AKTIF')->get()
         ];
         return view('inputbarang', $data);
     }
@@ -40,6 +40,7 @@ class InputController extends Controller
             $sarana = Sarana::find($req->sarana);
 
             Service::create([
+                'no_antrian'        => "G001" . date('Yhis'),
                 'kode_dc'           => "G001",
                 'sarana'            => $sarana->sarana,
                 'sn'                 => $sarana->sn,
@@ -55,6 +56,9 @@ class InputController extends Controller
                 'status'           => 'SERVICE',
                 'nama_approved'   => "-",
             ]);
+
+            $sarana->status = "SERVICE";
+            $sarana->update();
 
             return response()->json([
                 'status' => 1,

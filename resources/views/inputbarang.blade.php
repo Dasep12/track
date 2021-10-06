@@ -9,7 +9,7 @@
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Quick Example</h3>
+                <h3 class="box-title">Input Permintaan Service</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -22,7 +22,7 @@
                             <option selected="selected" value="">-Pilih Sarana-</option>
                             @foreach($data as $d)
                             <option value="{{ $d->id }}">
-                                <i>{{ $d->sarana . " - " . "G001" . Str::limit($d->sn ,3 ,"") }}</i>
+                                <i>{{ "G001" . " - " . $d->sarana . " - " .  $d->sn . " - " . $d->aktiva }}</i>
                             </option>
                             @endforeach
                         </select>
