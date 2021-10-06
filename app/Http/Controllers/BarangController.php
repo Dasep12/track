@@ -66,6 +66,20 @@ class BarangController extends Controller
     //update status barang
     public function updateBarang()
     {
+        $data = Service::find($_GET['id']);
+        $data->status_approved = "Approved";
+        $data->tgl_approved = date('Y-m-d');
+        $data->nama_approved = "Andika";
+        $data->update();
+        echo "Approved Success";
+    }
 
+    //hapus data barang 
+    public function hapusBarang(Request $req)
+    {
+        $id = $req->id;
+        $data = Service::find($id);
+        $data->delete();
+        echo "Di batalkan";
     }
 }

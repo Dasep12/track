@@ -7,7 +7,7 @@
   <div class="col-xs-12">
     <div class="box box-primary">
       <ul class="nav nav-pills">
-        @php($role = 1)
+        @php($role = 2)
         @if($role == 1 || $role == 2)
         <li class="nav-item @if($page == 1) btn-info text-white @endif">
           <a class="nav-link" href="/barang?page=1">Menunggu Approved ( {{ $countService }} )</a>
@@ -53,7 +53,7 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>#</th>
+              <th># </th>
               <th width="10%">Aksi</th>
               <th>Status</th>
               <th>Unit</th>
@@ -68,19 +68,17 @@
             <tr>
               <td>{{ $no++ }}</td>
               <td>
+                <!-- jika role spv (1) maka tanda approve akan muncul  -->
                 @if($role == 1 && $brg->status_approved == "Menunggu Approved" )
-                <form action="/updateStatusbarang/{{ $brg->id }}" method="post">
-                  @csrf
-                  <a type="submit" class="tip btn btn-success btn-sm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
-                </form>
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
                 @endif
-                <!-- jika role 2 dan barang status approved masih menunggu -->
+                <!-- jika role support (2) dan barang status approved masih menunggu -->
                 <!-- maka tanda hapus aktif -->
                 @if($role == 2 && $brg->status_approved == "Menunggu Approved")
-                <a type="submit" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
+                <a onclick="javascript:hapus('{{ $brg->id }}', '<?= route('hapusBarang') ?>' , '{{ csrf_token() }}')" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
                 @endif
 
-                <a onclick="javascript:showuserdetail('{{ $brg->id }}')" data-toggle="modal" data-target="#exampleModal" class="tip btn btn-primary btn-sm"><i class="fa fa-info"></i><span>Detail Permintaan Service</span> </a>
+                <button onclick="javascript:showuserdetail('{{ $brg->id }}', '<?= route('loadModal')  ?>' )" data-toggle="modal" data-target="#exampleModal" class="tip btn btn-primary btn-sm"><i class="fa fa-info"></i><span>Detail Permintaan Service</span> </button>
               </td>
               <td>
                 <label class="label
@@ -122,10 +120,10 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
       </div>
       <div class="modal-body">
         <div id="contentModal">
@@ -143,49 +141,6 @@
 <!-- end of modal detail barang -->
 
 <script>
-  //tampilkan data barang service di modal lewat ajax request
-  function showuserdetail(id) {
-    $.ajax({
-      type: "post",
-      method: "get",
-      url: "<?= route('loadModal')  ?>",
-      data: "id=" + id,
-      dataType: "html",
-      beforeSend: function() {
-        $("loadingModal").append('sedang mengambil data . . . ');
-      },
-      success: function(response) {
-        // $('#bodymodal_userDetail').empty();
-        $('#contentModal').empty();
-        $('#contentModal').append(response);
-      },
-      complete() {
-        $("loadingModal").append('');
-      }
-    });
-  }
 
-  // update status barang dengan kirim parameter lewat sweet alert
-  $('.show_confirm').click(function(event) {
-
-    var form = $(this).closest("form");
-
-    var name = $(this).data("name");
-
-    event.preventDefault();
-
-    swal({
-      title: `Are you sure you want to delete this record?`,
-      text: "If you delete this, it will be gone forever.",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        form.submit();
-      }
-    });
-
-  });
 </script>
 @endsection
