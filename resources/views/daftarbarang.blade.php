@@ -54,7 +54,7 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Aksi</th>
+              <th width="10%">Aksi</th>
               <th>Status</th>
               <th>Unit</th>
               <th>Aktiva</th>
@@ -71,13 +71,13 @@
                 @if($role == 1 && $brg->status_approved == "Menunggu Approved" )
                 <form action="/updateStatusbarang/{{ $brg->id }}" method="post">
                   @csrf
-                  <button class="tip btn btn-success btn-sm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </button>
+                  <a type="submit" class="tip btn btn-success btn-sm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
                 </form>
                 @endif
                 <!-- jika role 2 dan barang status approved masih menunggu -->
                 <!-- maka tanda hapus aktif -->
                 @if($role == 2 && $brg->status_approved == "Menunggu Approved")
-                <a href="#" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
+                <a type="submit" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
                 @endif
 
                 <a onclick="javascript:showuserdetail('{{ $brg->id }}')" data-toggle="modal" data-target="#exampleModal" class="tip btn btn-primary btn-sm"><i class="fa fa-info"></i><span>Detail Permintaan Service</span> </a>
