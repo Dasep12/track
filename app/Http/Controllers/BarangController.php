@@ -71,6 +71,11 @@ class BarangController extends Controller
         $data->status_approved = $_GET['status'];
         $data->tgl_approved = date('Y-m-d');
         $data->nama_approved = "Andika";
+        if ($_GET['status'] ==  "Sudah Di Kirim") {
+            $upd = Sarana::where('sn', $data->sn)->first();
+            $upd->status = "AKTIF";
+            $upd->update();
+        }
         $data->update();
         echo "Success";
     }
