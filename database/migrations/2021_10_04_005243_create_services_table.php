@@ -29,6 +29,8 @@ class CreateServicesTable extends Migration
             $table->string('status_approved');
             $table->string('tgl_approved');
             $table->string('nama_approved');
+            $table->string('tgl_diterima');
+            $table->string('selesai_service');
             $table->timestamps();
         });
     }

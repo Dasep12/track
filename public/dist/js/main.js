@@ -61,9 +61,9 @@ $(function () {
   //update data status barang atau approved barang 
   //page app/http/controllers/BarangController
   //page views/daftarbarang.blade.php
-  function update(id , url) {
+  function update(id , url, stat) {
     swal({
-        title: "Approved Permintaan Service",
+        title: "Rubah Status Permintaan Service",
         text: "Sarana akan segera dikirim jika sudah approved",
         icon: "warning",
         buttons: [true, "Iya"],
@@ -74,7 +74,7 @@ $(function () {
           $.ajax({
             url: url ,
             method: "GET",
-            data: 'id=' + id,
+            data: 'id=' + id + "&status=" + stat ,
             success: function(response) {
               swal({
                 icon: "success",

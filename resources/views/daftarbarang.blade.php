@@ -2,12 +2,19 @@
 
 
 @section('content')
+@php($role = 1)
 <div class="row">
 
   <div class="col-xs-12">
+    @if($role == 1)
+    {{ 'mode spv' }}
+    @elseif($role == 2)
+    {{ 'mode support' }}
+    @elseif($role == 3)
+    {{ 'mode GA' }}
+    @endif
     <div class="box box-primary">
       <ul class="nav nav-pills">
-        @php($role = 2)
         @if($role == 1 || $role == 2)
         <li class="nav-item @if($page == 1) btn-info text-white @endif">
           <a class="nav-link" href="/barang?page=1">Menunggu Approved ( {{ $countService }} )</a>
@@ -54,7 +61,7 @@
           <thead>
             <tr>
               <th># </th>
-              <th width="10%">Aksi</th>
+              <th width="15%">Aksi</th>
               <th>Status</th>
               <th>Unit</th>
               <th>Aktiva</th>
@@ -70,13 +77,35 @@
               <td>
                 <!-- jika role spv (1) maka tanda approve akan muncul  -->
                 @if($role == 1 && $brg->status_approved == "Menunggu Approved" )
-                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' , 'Approved')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Approved Permintaan Service</span> </a>
+
+                <a onclick="javascript:hapus('{{ $brg->id }}', '<?= route('hapusBarang') ?>' , '{{ csrf_token() }}')" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
                 @endif
+
+                @if($role == 1 && $brg->status_approved == "Approved" )
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>','Menunggu Approved')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Batalkan Permintaan Service</span> </a>
+                @endif
+                <!-- selesai -->
+
+
                 <!-- jika role support (2) dan barang status approved masih menunggu -->
                 <!-- maka tanda hapus aktif -->
                 @if($role == 2 && $brg->status_approved == "Menunggu Approved")
                 <a onclick="javascript:hapus('{{ $brg->id }}', '<?= route('hapusBarang') ?>' , '{{ csrf_token() }}')" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Hapus Data Permintaan Service</span> </a>
                 @endif
+                <!-- selesai -->
+
+                <!-- jika role ga (3) status barang approved  -->
+                <!-- maka masukan barang ke dalam antrian service -->
+                @if($role == 3 && $brg->status_approved == "Approved" )
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Dalam Antrian')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Masukan ke Dalam Antrian Service</span> </a>
+                @endif
+
+                <!-- maka masukan barang ke dalam  proses service -->
+                @if($role == 3 && $brg->status_approved == "Dalam Antrian" )
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Proses Service')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Mulai Proses Service</span> </a>
+                @endif
+                <!-- selesai -->
 
                 <button onclick="javascript:showuserdetail('{{ $brg->id }}', '<?= route('loadModal')  ?>' )" data-toggle="modal" data-target="#exampleModal" class="tip btn btn-primary btn-sm"><i class="fa fa-info"></i><span>Detail Permintaan Service</span> </button>
               </td>

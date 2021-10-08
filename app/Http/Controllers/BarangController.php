@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Sarana;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -67,11 +68,11 @@ class BarangController extends Controller
     public function updateBarang()
     {
         $data = Service::find($_GET['id']);
-        $data->status_approved = "Approved";
+        $data->status_approved = $_GET['status'];
         $data->tgl_approved = date('Y-m-d');
         $data->nama_approved = "Andika";
         $data->update();
-        echo "Approved Success";
+        echo "Success";
     }
 
     //hapus data barang 
@@ -79,6 +80,9 @@ class BarangController extends Controller
     {
         $id = $req->id;
         $data = Service::find($id);
+        $upd = Sarana::where('sn', $data->sn)->first();
+        $upd->status = "AKTIF";
+        $upd->update();
         $data->delete();
         echo "Di batalkan";
     }
