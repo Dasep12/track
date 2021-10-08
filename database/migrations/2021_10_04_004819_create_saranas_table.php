@@ -16,6 +16,7 @@ class CreateSaranasTable extends Migration
         Schema::create('tbl_sarana', function (Blueprint $table) {
             $table->id();
             $table->string('kode_dc');
+            $table->string('departement');
             $table->string('sarana');
             $table->string('aktiva');
             $table->string('sn');

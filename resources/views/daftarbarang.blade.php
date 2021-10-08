@@ -2,7 +2,7 @@
 
 
 @section('content')
-@php($role = 2)
+@php($role = 3)
 <div class="row">
 
   <div class="col-xs-12">
@@ -123,7 +123,7 @@
                 @endif
 
                 @if($role == 3 && $brg->status_approved == "Proses Service" )
-                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Proses Service' ,'Usulkan Musnah')" type="button" class="tip btn btn-danger btn-sm show_confirm"><i class="fa fa-reply"></i><span>Usulkan Musnah</span> </a>
+                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Usulan Musnah' ,'Usulkan Musnah')" type="button" class="tip btn btn-danger btn-sm show_confirm"><i class="fa fa-reply"></i><span>Usulkan Musnah</span> </a>
 
                 <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Selesai Service' ,'Proses Service Selesai')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-arrow-right"></i><span>Selesaikan Proses Service</span> </a>
 

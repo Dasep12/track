@@ -17,6 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('no_antrian');
             $table->string('kode_dc');
+            $table->string('departement');
             $table->string('sarana');
             $table->string('sn');
             $table->string('aktiva');
