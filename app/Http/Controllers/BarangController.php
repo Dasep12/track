@@ -26,6 +26,8 @@ class BarangController extends Controller
             $status_approved = "Selesai Service";
         } else if ($pge == 6) {
             $status_approved = "Sudah Di Kirim";
+        } else {
+            $status_approved = "Menunggu Approved";
         }
         $barang = Service::where('status_approved', $status_approved)->where('kode_dc', $kodeDC)->get();
 

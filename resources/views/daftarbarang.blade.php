@@ -32,9 +32,10 @@
           <a class="nav-link" href="/barang?page=5">Selesai Service ( {{ $countService4 }} )</a>
         </li>
         <li class="nav-item @if($page == 6) btn-info text-white @endif">
-          <a class="nav-link" href="/barang?page=6">@if($role == 3)
-            {{ 'Sudah Di Kirim'}}
-            @elseif($role == 2)
+          <a class="nav-link" href="/barang?page=6">
+            @if($role == 3)
+            {{ 'Sudah Di Kirim ( ' . $countService5 . ' )'}}
+            @elseif($role == 2 || $role == 1 )
             {{ 'Sudah Kembali ( ' . $countService5 . ' )'  }}
             @endif
           </a>
@@ -55,8 +56,8 @@
         <li class="nav-item @if($page == 6) btn-info text-white @endif">
           <a class="nav-link" href="/barang?page=6">
             @if($role == 3)
-            {{ 'Sudah Di Kirim'}}
-            @elseif($role == 2)
+            {{ 'Sudah Di Kirim ( ' . $countService5 . ' )'}}
+            @elseif($role == 2 || $role == 1)
             {{ 'Sudah Kembali (' . $countService5 . ')'  }}
             @endif
           </a>

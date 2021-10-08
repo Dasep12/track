@@ -26,3 +26,6 @@ Route::get('/barang', [BarangController::class, 'barang']);
 Route::get('/updateStatusbarang', [BarangController::class, 'updateBarang'])->name('updateBarang');
 Route::get('/loadModalBarang', [BarangController::class, 'detailModal'])->name('loadModal');
 Route::post('/hapusServiceBarang', [BarangController::class, 'hapusBarang'])->name('hapusBarang');
+Route::get('/musnah', function () {
+    return 'ini halaman musnah';
+});
