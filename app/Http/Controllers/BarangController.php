@@ -78,6 +78,10 @@ class BarangController extends Controller
             $upd->status = "AKTIF";
             $upd->update();
         }
+
+        if ($_GET['status'] == "Dalam Antrian") {
+            $data->tgl_diterima = date('Y-m-d');
+        }
         $data->update();
         echo "Success";
     }

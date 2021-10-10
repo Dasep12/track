@@ -19,13 +19,16 @@ $(function () {
                     })
                 }else {
                     console.log(data.pesan);
-                    swal(data.pesan);
-                    $("#inputService")[0].reset();
-                   // window.reload();
+                    swal({
+                      title: data.pesan ,
+                      icon: "success",
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                    }).then(function() {
+                      //$("#inputService")[0].reset();
+                      location.reload();
+                    })
                 }
-            },
-            complete : function(){
-                $(".btn").attr('disabled',false);
             }
         })
     })
@@ -77,7 +80,9 @@ $(function () {
             success: function(response) {
               swal({
                 icon: "success",
-                title: response
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                title: response 
               }).then(function() {
                 location.reload();
               })
@@ -120,3 +125,39 @@ $(function () {
       });
   }
 //   end
+
+
+
+//musnahkan sarana 
+//page app/http/controllers/MusnahController
+//page views/barangMusnah.blade.php
+function musnah(id , url, info) {
+    swal({
+        title: info,
+        icon: "warning",
+        buttons: [true, "Iya"],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            url: url ,
+            method: "GET",
+            data: 'id=' + id  ,
+            success: function(response) {
+              console.log(response);
+              // swal({
+              //   icon: "success",
+              //   confirmButtonColor: '#3085d6',
+              //   cancelButtonColor: '#d33',
+              //   title: response 
+              // }).then(function() {
+              //   location.reload();
+              // })
+            }
+          })
+        }
+      });
+  }
+
+//end

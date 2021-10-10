@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\MusnahController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,5 @@ Route::get('/barang', [BarangController::class, 'barang']);
 Route::get('/updateStatusbarang', [BarangController::class, 'updateBarang'])->name('updateBarang');
 Route::get('/loadModalBarang', [BarangController::class, 'detailModal'])->name('loadModal');
 Route::post('/hapusServiceBarang', [BarangController::class, 'hapusBarang'])->name('hapusBarang');
-Route::get('/musnah', function () {
-    return 'ini halaman musnah';
-});
+Route::get('/musnah', [MusnahController::class, 'index'])->name('barangMusnah');
+Route::get('/musnahBarang', [MusnahController::class, 'musnah'])->name('pemusnahan');

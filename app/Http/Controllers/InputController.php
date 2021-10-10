@@ -42,19 +42,23 @@ class InputController extends Controller
             Service::create([
                 'no_antrian'        => "G001" . date('Yhis'),
                 'kode_dc'           => "G001",
+                'departement'       => $sarana->departement,
                 'sarana'            => $sarana->sarana,
                 'sn'                 => $sarana->sn,
-                'aktiva'           => $sarana->aktiva,
+                'aktiva'            => $sarana->aktiva,
                 'tahun_perolehan'   => $sarana->tahun_perolehan,
                 'keterangan'        =>   $req->deskripsi,
                 'nama_pic'          => $req->nama_pic,
                 'nik_pic'          => $req->nik_pic,
                 'tujuan'            => $req->tujuan,
                 'tanggal_kirim'     => date('Y-m-d'),
+                'tgl_diterima'      => "null",
                 'status_approved'  => "Menunggu Approved",
                 'tgl_approved'    => "-",
                 'status'           => 'SERVICE',
                 'nama_approved'   => "-",
+                'selesai_service' => "-",
+                'info'              => "-"
             ]);
 
             $sarana->status = "SERVICE";
@@ -62,7 +66,7 @@ class InputController extends Controller
 
             return response()->json([
                 'status' => 1,
-                'pesan' => "file di tambah",
+                'pesan' => "Di usulkan Service",
             ]);
         }
     }

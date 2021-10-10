@@ -258,8 +258,11 @@
             </ul>
           </li>
 
-          <li class="">
-            <a href="/musnah">
+          <li class="
+          @if(request()->is('musnah') )
+             {{ 'active' }}
+          @endif">
+            <a href="/musnah?page=1">
               <i class="fa fa-trash"></i> <span>Pemusnahan</span>
             </a>
           </li>
