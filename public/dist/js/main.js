@@ -70,6 +70,7 @@ $(function () {
         icon: "warning",
         buttons: [true, "Iya"],
         dangerMode: true,
+        closeOnClickOutside: false,
       })
       .then((willDelete) => {
         if (willDelete) {
