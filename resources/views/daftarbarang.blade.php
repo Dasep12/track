@@ -123,7 +123,7 @@
                 @endif
 
                 @if($role == 3 && $brg->status_approved == "Proses Service" )
-                <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Usulan Musnah' ,'Usulkan Musnah')" type="button" class="tip btn btn-danger btn-sm show_confirm"><i class="fa fa-reply"></i><span>Usulkan Musnah</span> </a>
+                <a onclick="javascript:showUsulanMusnah('{{ $brg->id }}', '<?= route('formMusnah') ?>')" type="button" data-toggle="modal" data-target="#usulanMusnah" class="tip btn btn-danger btn-sm show_confirm"><i class="fa fa-reply"></i><span>Usulkan Musnah</span> </a>
 
                 <a onclick="javascript:update('{{ $brg->id }}', '<?= route('updateBarang') ?>' ,'Selesai Service' ,'Proses Service Selesai')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-arrow-right"></i><span>Selesaikan Proses Service</span> </a>
 
@@ -168,7 +168,7 @@
 
 <!-- modal detail barang -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" data-keyboard="false" data-backdrop="static" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -184,15 +184,42 @@
         </div>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
 </div>
 <!-- end of modal detail barang -->
 
-<script>
 
-</script>
+
+<!-- modal usulan musnah -->
+<!-- Modal -->
+<div class="modal fade" data-keyboard="false" data-backdrop="static" id="usulanMusnah" tabindex="-1" role="dialog" aria-labelledby="usulanMusnahLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="usulanMusnahLabel">Usulkan Musnah</h5>
+      </div>
+      <div class="modal-body">
+        <div id="contentModal">
+          <form action="<?= route('pemusnahan') ?>" method="post" id="usulkanMusnahBarang">
+            <p id="formUsulanMusnah"></p>
+            <!-- content modal -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of modal detail barang -->
+
 @endsection

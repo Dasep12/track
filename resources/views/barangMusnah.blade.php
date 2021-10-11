@@ -16,10 +16,10 @@
         <div class="box box-primary">
             <ul class="nav nav-pills">
                 <li class="nav-item @if($page == 1) btn-info text-white @endif">
-                    <a class="nav-link" href="/barang?page=1">Usulan Musnah ( {{ 0 }} )</a>
+                    <a class="nav-link" href="/musnah?page=1">Usulan Musnah ( {{ 0 }} )</a>
                 </li>
                 <li class="nav-item @if($page == 2) btn-info text-white @endif">
-                    <a class="nav-link" href="/barang?page=2">Musnah ( )</a>
+                    <a class="nav-link" href="/musnah?page=2">Musnah ( )</a>
                 </li>
             </ul>
             <div class="box-header">
@@ -35,6 +35,7 @@
                             <th>Unit</th>
                             <th>Aktiva</th>
                             <th>SN</th>
+                            <th>Alasan Musnah</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,7 @@
                             <td>{{$brg->sarana}}</td>
                             <td> {{ $brg->aktiva }}</td>
                             <td>{{ $brg->sn }}</td>
+                            <td>{{ $brg->info }}</td>
                         </tr>
                         @endforeach
                     </tbody>

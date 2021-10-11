@@ -66,6 +66,15 @@ class BarangController extends Controller
         return view('modal_detail_barang', $data);
     }
 
+    //load modal data 
+    public function modalformMusnah()
+    {
+        $data = [
+            'id'  => $_GET['id']
+        ];
+        return view('formMusnah', $data);
+    }
+
     //update status barang
     public function updateBarang()
     {

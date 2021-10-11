@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('daftarbarang');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::get('/inputservice', [InputController::class, 'index']);
@@ -28,4 +28,5 @@ Route::get('/updateStatusbarang', [BarangController::class, 'updateBarang'])->na
 Route::get('/loadModalBarang', [BarangController::class, 'detailModal'])->name('loadModal');
 Route::post('/hapusServiceBarang', [BarangController::class, 'hapusBarang'])->name('hapusBarang');
 Route::get('/musnah', [MusnahController::class, 'index'])->name('barangMusnah');
-Route::get('/musnahBarang', [MusnahController::class, 'musnah'])->name('pemusnahan');
+Route::post('/musnahBarang', [MusnahController::class, 'musnah'])->name('pemusnahan');
+Route::get('/loadFormMusnah', [BarangController::class, 'modalformMusnah'])->name('formMusnah');
