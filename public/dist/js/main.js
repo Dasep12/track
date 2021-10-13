@@ -27,7 +27,7 @@ $(function () {
                       confirmButtonColor: '#3085d6',
                       cancelButtonColor: '#d33',
                     }).then(function() {
-                      //$("#inputService")[0].reset();
+                      $("#inputService")[0].reset();
                       location.reload();
                     })
                 }
@@ -55,43 +55,16 @@ $(function () {
                       $('span.' + prefix + '_error').text(val[0]);
                   })
                }else if(response.msg == 1) {
-                 alert(response.pesan)
-                 location.reload();
+                swal({
+                    title: response.pesan,
+                    icon: "success",
+                    closeOnClickOutside: false,
+                  }).then(function(){
+                    location.reload();
+                  })
                }
             }
       })
-      // swal({
-      //   title: "Usulkan Musnah",
-      //   icon: "warning",
-      //   buttons: [true, "Iya"],
-      //   dangerMode: true,
-      //   closeOnClickOutside: false,
-      // })
-      // .then((willDelete) => {
-      //   if (willDelete) {
-      //     $.ajax({
-      //       url: $(this).attr('action') ,
-      //       method: $(this).attr('method'),
-      //       processData : false ,
-      //       contentType : false ,
-      //       data: new FormData(this),
-      //       beforeSend : function(){
-      //           //$(".btn").attr('disabled',true);
-      //           $(document).find('span.error-text').text('');
-      //       },
-      //       success: function(response) {
-      //          alert(response);
-      //          if(response.msg == 0){
-      //             $.each(response.error, function(prefix , val){
-      //                 $('span.' + prefix + '_error').text(val[0]);
-      //             })
-      //          }else if(response.msg == 1) {
-      //            alert(response.pesan)
-      //          }
-      //       }
-      //     })
-      //   }
-      // });
     })
   
   })
@@ -191,7 +164,7 @@ $(function () {
 
 
 
-//musnahkan sarana 
+//usulkan musnahkan sarana 
 //page app/http/controllers/MusnahController
 //page views/barangMusnah.blade.php
 function musnah(id , url, info) {
@@ -225,6 +198,8 @@ function musnah(id , url, info) {
 //end
 
 
+
+
   //modal kirim alasan barang di musnahkan
   //page app/http/controllers/BarangController
   //page views/daftarbarang.blade.php
@@ -249,3 +224,39 @@ function musnah(id , url, info) {
     });
   }
 // end
+
+
+
+//musnahkan sarana 
+//page app/http/controllers/MusnahController
+//page views/barangMusnah.blade.php
+function accmusnah(id , url, info,token) {
+  swal({
+      title: info,
+      icon: "warning",
+      buttons: [true, "Iya"],
+      dangerMode: true, 
+      closeOnClickOutside: false,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: url ,
+          method: "POST",
+          data: 'id=' + id + "&_token=" + token  ,
+          success: function(response) {
+            console.log(response);
+            // swal({
+            //   icon: "success",
+            //   confirmButtonColor: '#3085d6',
+            //   cancelButtonColor: '#d33',
+            //   title: response 
+            // }).then(function() {
+            //   location.reload();
+            // })
+          }
+        })
+      }
+    });
+}
+//end

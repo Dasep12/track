@@ -29,4 +29,5 @@ Route::get('/loadModalBarang', [BarangController::class, 'detailModal'])->name('
 Route::post('/hapusServiceBarang', [BarangController::class, 'hapusBarang'])->name('hapusBarang');
 Route::get('/musnah', [MusnahController::class, 'index'])->name('barangMusnah');
 Route::post('/musnahBarang', [MusnahController::class, 'musnah'])->name('pemusnahan');
+Route::post('/accpemusnahan', [MusnahController::class, 'accMusnah'])->name('accMusnah');
 Route::get('/loadFormMusnah', [BarangController::class, 'modalformMusnah'])->name('formMusnah');

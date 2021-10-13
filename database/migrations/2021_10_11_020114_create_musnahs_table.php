@@ -22,8 +22,10 @@ class CreateMusnahsTable extends Migration
             $table->string('sn');
             $table->string('aktiva');
             $table->string('tgl_service');
+            $table->string('selesai_service');
             $table->string('tanggal_musnah');
-            $table->longText('keterangan');
+            $table->string('status');
+            $table->longText('info');
             $table->timestamps();
         });
     }

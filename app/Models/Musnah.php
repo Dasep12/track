@@ -11,7 +11,7 @@ class Musnah extends Model
 
 
     protected $fillable = [
-        'no_antrian', 'kode_dc', 'departement', 'sarana', 'sn', 'aktiva', 'tgl_service', 'tanggal_musnah', 'keterangan'
+        'no_antrian', 'kode_dc', 'departement', 'sarana', 'sn', 'aktiva', 'tgl_service', 'tanggal_musnah', 'info', 'status', 'selesai_service'
     ];
 
     protected $table = "tbl_musnah";

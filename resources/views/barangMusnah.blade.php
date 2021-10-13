@@ -30,6 +30,7 @@
                     <thead>
                         <tr>
                             <th># </th>
+                            <th width="15%">No Antrian</th>
                             <th width="15%">Aksi</th>
                             <th>Status</th>
                             <th>Unit</th>
@@ -43,10 +44,12 @@
                         @foreach($daftar_barang as $brg)
                         <tr>
                             <td>{{ $no++ }}</td>
+                            <td>{{ $brg->no_antrian }}</td>
                             <td>
+
                                 <!-- jika role spv (1) maka tanda approve akan muncul  -->
                                 @if($role == 1 && $brg->status_approved == "Usulan Musnah" )
-                                <a onclick="javascript:musnah('{{ $brg->id }}', '<?= route('pemusnahan') ?>' ,'Acc Pemusnahan Barang')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Acc Pemusnahan Barang</span> </a>
+                                <a onclick="javascript:accmusnah('{{ $brg->id }}', '<?= route('accMusnah') ?>' ,'Setujui Pemusnahan Barang','{{ csrf_token() }}')" type="button" class="tip btn btn-success btn-sm show_confirm"><i class="fa fa-check"></i><span>Acc Pemusnahan Barang</span> </a>
 
                                 <a onclick="javascript:hapus('{{ $brg->id }}', '<?= route('updateBarang') ?>' , '{{ csrf_token() }}')" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Batalkan Pemusnahan</span> </a>
                                 @endif
