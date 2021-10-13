@@ -79,6 +79,9 @@ class BarangController extends Controller
     {
         $id = $req->id;
         $data = Service::find($id);
+        $barang = Sarana::find($data->sn);
+        $barang->status = "AKTIF";
+        $barang->update();
         $data->delete();
         echo "Di batalkan";
     }
