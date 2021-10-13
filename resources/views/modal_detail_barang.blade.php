@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td>
-                    Status Approved
+                    Status Sarana
                 </td>
                 <td>:</td>
                 <td><label class="bg-primary">{{ $barang->status_approved }} </label> </td>

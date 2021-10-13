@@ -17,6 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('no_antrian');
             $table->string('kode_dc');
+            $table->string('departement');
             $table->string('sarana');
             $table->string('sn');
             $table->string('aktiva');
@@ -29,6 +30,9 @@ class CreateServicesTable extends Migration
             $table->string('status_approved');
             $table->string('tgl_approved');
             $table->string('nama_approved');
+            $table->string('tgl_diterima');
+            $table->string('selesai_service');
+            $table->longText('info');
             $table->timestamps();
         });
     }

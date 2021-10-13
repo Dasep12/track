@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Data Tables</title>
+  <title>Application GA & Support</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -197,24 +197,76 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview">
+          <li class="">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
-          <li class="treeview">
+          <li class="treeview 
+          @if(request()->is('inputservice') || request()->is('barang'))
+           {{ 'active' }}
+          @endif ">
             <a href="#">
-              <i class="fa fa-pie-chart"></i>
+              <i class="fa fa-cog"></i>
               <span>Pengajuan Service</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/barang?page=1"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
-              <li><a href="/inputservice"><i class="fa fa-circle-o"></i> Input Permintaan Service</a></li>
+              <li class="
+              @if(request()->is('barang') )
+                {{ 'active' }}
+              @endif
+              ">
+                <a href="/barang?page=1"><i class="fa fa-circle-o"></i> Daftar Barang</a>
+              </li>
+              <li class="
+              @if(request()->is('inputservice') )
+                {{ 'active' }}
+              @endif ">
+                <a href="/inputservice"><i class="fa fa-circle-o"></i> Input Permintaan Service</a>
+              </li>
             </ul>
           </li>
+
+          <li class="treeview 
+          @if(request()->is('master') || request()->is('addbarang'))
+           {{ 'active' }}
+          @endif ">
+            <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>Master Sarana</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="
+              @if(request()->is('addbarang') )
+                {{ 'active' }}
+              @endif
+              ">
+                <a href="/addbarang"><i class="fa fa-circle-o"></i> Tambah Sarana</a>
+              </li>
+              <li class="
+              @if(request()->is('master') )
+                {{ 'active' }}
+              @endif ">
+                <a href="/master"><i class="fa fa-circle-o"></i> Data Master</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="
+          @if(request()->is('musnah') )
+             {{ 'active' }}
+          @endif">
+            <a href="/musnah?page=1">
+              <i class="fa fa-trash"></i> <span>Pemusnahan</span>
+            </a>
+          </li>
+
           <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>

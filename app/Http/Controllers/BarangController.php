@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Sarana;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -25,6 +26,8 @@ class BarangController extends Controller
             $status_approved = "Selesai Service";
         } else if ($pge == 6) {
             $status_approved = "Sudah Di Kirim";
+        } else {
+            $status_approved = "Menunggu Approved";
         }
         $barang = Service::where('status_approved', $status_approved)->where('kode_dc', $kodeDC)->get();
 
@@ -63,15 +66,33 @@ class BarangController extends Controller
         return view('modal_detail_barang', $data);
     }
 
+    //load modal data 
+    public function modalformMusnah()
+    {
+        $data = [
+            'id'  => $_GET['id']
+        ];
+        return view('formMusnah', $data);
+    }
+
     //update status barang
     public function updateBarang()
     {
         $data = Service::find($_GET['id']);
-        $data->status_approved = "Approved";
+        $data->status_approved = $_GET['status'];
         $data->tgl_approved = date('Y-m-d');
         $data->nama_approved = "Andika";
+        if ($_GET['status'] ==  "Sudah Di Kirim") {
+            $upd = Sarana::where('sn', $data->sn)->first();
+            $upd->status = "AKTIF";
+            $upd->update();
+        }
+
+        if ($_GET['status'] == "Dalam Antrian") {
+            $data->tgl_diterima = date('Y-m-d');
+        }
         $data->update();
-        echo "Approved Success";
+        echo "Success";
     }
 
     //hapus data barang 
@@ -79,9 +100,9 @@ class BarangController extends Controller
     {
         $id = $req->id;
         $data = Service::find($id);
-        $barang = Sarana::find($data->sn);
-        $barang->status = "AKTIF";
-        $barang->update();
+        $upd = Sarana::where('sn', $data->sn)->first();
+        $upd->status = "AKTIF";
+        $upd->update();
         $data->delete();
         echo "Di batalkan";
     }

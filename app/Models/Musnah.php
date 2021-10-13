@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sarana extends Model
+class Musnah extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'departement', 'sarana', 'aktiva', 'sn', 'tahun_perolehan', 'status', 'kode_dc'
+        'no_antrian', 'kode_dc', 'departement', 'sarana', 'sn', 'aktiva', 'tgl_service', 'tanggal_musnah', 'keterangan'
     ];
 
-    protected $table = "tbl_sarana";
+    protected $table = "tbl_musnah";
 }
