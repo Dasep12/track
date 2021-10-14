@@ -11,7 +11,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AddController extends Controller
 {
-    //
 
     public function index()
     {
@@ -77,12 +76,19 @@ class AddController extends Controller
 
     public function fileImport(Request $request)
     {
-        $p = Excel::import(new SaranaImport, $request->file('file'));
 
-        if ($p) {
-            return back()->with('success', 'berhasil');
-        } else {
-            return back()->with('success', 'gagal upload file ');
-        }
+        //$array = Excel::toCollection(new SaranaImport, $request->file);
+        $array = Excel::toArray(new SaranaImport, $request->file);
+        $count = 0;
+        $i = 1;
+
+
+
+        //$p = Excel::import(new SaranaImport, $request->file('file'));
+        // if ($p) {
+        //     return back()->with('success', 'berhasil');
+        // } else {
+        //     return back()->with('success', 'gagal upload file ');
+        // }
     }
 }

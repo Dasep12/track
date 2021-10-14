@@ -10,7 +10,7 @@
     <label>Upload File</label>
     @csrf
     <div class="form-group">
-        <input type="file" name="file">
+        <input type="file" name="file" class="form-control">
     </div>
     <button type="submit" class="btn btn-danger">Upload</button>
 </form>

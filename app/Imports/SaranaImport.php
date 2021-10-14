@@ -15,14 +15,14 @@ class SaranaImport implements ToModel
     public function model(array $row)
     {
 
-        $sarana = Sarana::all();
-        $count  =  0;
-        foreach ($sarana as $d) {
-            if ($d->sn == $row[4]) {
-                $count++;
-            }
-        }
-        //echo $count;
+        // $sarana = Sarana::all();
+        // $count  =  0;
+        // foreach ($sarana as $d) {
+        //     if ($d->sn == $row[4]) {
+        //         $count++;
+        //     }
+        // }
+
 
         return new Sarana(array(
             'kode_dc'           => $row[0],
