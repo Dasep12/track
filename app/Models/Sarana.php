@@ -10,7 +10,14 @@ class Sarana extends Model
     use HasFactory;
 
     protected $fillable = [
-        'departement', 'sarana', 'aktiva', 'sn', 'tahun_perolehan', 'status', 'kode_dc'
+        'id',
+        'kode_dc',
+        'departement',
+        'sarana',
+        'aktiva',
+        'sn',
+        'tahun_perolehan',
+        'status',
     ];
 
     protected $table = "tbl_sarana";

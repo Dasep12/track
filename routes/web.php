@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\MusnahController;
@@ -31,3 +32,8 @@ Route::get('/musnah', [MusnahController::class, 'index'])->name('barangMusnah');
 Route::post('/musnahBarang', [MusnahController::class, 'musnah'])->name('pemusnahan');
 Route::post('/accpemusnahan', [MusnahController::class, 'accMusnah'])->name('accMusnah');
 Route::get('/loadFormMusnah', [BarangController::class, 'modalformMusnah'])->name('formMusnah');
+Route::get('/addsarana', [AddController::class, 'index']);
+Route::post('/addsarana', [AddController::class, 'store']);
+
+Route::post('/upload', [AddController::class, 'fileImport']);
+Route::get('/upload', [AddController::class, 'formUpload']);
