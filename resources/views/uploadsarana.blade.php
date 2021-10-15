@@ -25,7 +25,7 @@
     <div class="form-group">
         <input type="file" onchange="return exe()" id="fileUpload" name="file" class="form-control">
 
-        {{ $errors->all() }}
+        {{ $error }}
     </div>
     <button type="submit" class="btn btn-danger">Upload</button>
 </form>
