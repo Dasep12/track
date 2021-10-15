@@ -3,7 +3,12 @@
 @section('content')
 @if(Session('success'))
 <div class="alert alert-info">
-    <span>{{"berhasil upload" }}</span>
+    <span> {{ Session('success') }} </span>
+</div>
+
+@elseif(Session('info'))
+<div class="alert alert-danger">
+    <span> {{ Session('info') }} </span>
 </div>
 @endif
 <form action="/upload" method="post" enctype="multipart/form-data">

@@ -83,12 +83,26 @@ class AddController extends Controller
         $i = 1;
 
 
+        print_r($array);
+        echo "<br>------------------------------------<br>";
 
-        //$p = Excel::import(new SaranaImport, $request->file('file'));
-        // if ($p) {
-        //     return back()->with('success', 'berhasil');
-        // } else {
-        //     return back()->with('success', 'gagal upload file ');
-        // }
+        for ($j = 0; $j <  count($array[0]); $j++) {
+            for ($i = 0; $i < count($array[0][0]); $i++) {
+                $serial_number = $array[0][$j][$i];
+                foreach (Sarana::all() as $data) {
+                    if ($data->sn == $serial_number) {
+                        $info =  "serial number sudah ada " . $serial_number;
+                        return redirect('/upload')->with('info', $info);
+                    }
+                }
+            }
+        }
+
+        $p = Excel::import(new SaranaImport, $request->file('file'));
+        if ($p) {
+            return back()->with('success', 'data sarana berhasil ditambah ke master');
+        } else {
+            return back()->with('success', 'gagal upload file ');
+        }
     }
 }

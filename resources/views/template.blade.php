@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="/bower_components/select2/dist/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/dist/css/style.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
@@ -44,58 +45,7 @@
   <!-- jQuery 3 -->
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <style>
-    a.tip {
-      text-decoration: none
-    }
 
-    a.tip:hover {
-      cursor: help;
-      position: relative
-    }
-
-    a.tip span {
-      display: none
-    }
-
-    a.tip:hover span {
-      padding: 5px 20px 5px 5px;
-      display: block;
-      z-index: 100;
-      background: #000 no-repeat 100% 5%;
-      left: 0px;
-      margin: 10px;
-      width: 250px;
-      position: absolute;
-      top: 10px;
-      text-decoration: none
-    }
-
-    /* versi button */
-    button.tip {
-      text-decoration: none
-    }
-
-    button.tip:hover {
-      cursor: help;
-      position: relative
-    }
-
-    button.tip span {
-      display: none
-    }
-
-    button.tip:hover span {
-      padding: 5px 20px 5px 5px;
-      display: block;
-      z-index: 100;
-      background: #000 no-repeat 100% 5%;
-      left: 0px;
-      margin: 10px;
-      width: 250px;
-      position: absolute;
-      top: 10px;
-      text-decoration: none
-    }
   </style>
 </head>
 
@@ -134,7 +84,7 @@
                   <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    Alexander Pierce - Web Developer
+                    Dasep - Web Programmer
                     <small>Member since Nov. 2012</small>
                   </p>
                 </li>
@@ -243,11 +193,11 @@
             </a>
             <ul class="treeview-menu">
               <li class="
-              @if(request()->is('addbarang') )
+              @if(request()->is('addsarana') )
                 {{ 'active' }}
               @endif
               ">
-                <a href="/addbarang"><i class="fa fa-circle-o"></i> Tambah Sarana</a>
+                <a href="/addsarana"><i class="fa fa-circle-o"></i> Tambah Sarana</a>
               </li>
               <li class="
               @if(request()->is('master') )
