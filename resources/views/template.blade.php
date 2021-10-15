@@ -181,7 +181,7 @@
           </li>
 
           <li class="treeview 
-          @if(request()->is('master') || request()->is('addbarang'))
+          @if(request()->is('master') || request()->is('addbarang') || request()->is('upload'))
            {{ 'active' }}
           @endif ">
             <a href="#">
@@ -193,7 +193,7 @@
             </a>
             <ul class="treeview-menu">
               <li class="
-              @if(request()->is('addsarana') )
+              @if(request()->is('addsarana') || request()->is('upload') )
                 {{ 'active' }}
               @endif
               ">

@@ -76,33 +76,40 @@ class AddController extends Controller
 
     public function fileImport(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'file'   => 'required'
+        ], [
+            'file.required' => 'tidak ada file terpilih'
+        ]);
 
-        //$array = Excel::toCollection(new SaranaImport, $request->file);
-        $array = Excel::toArray(new SaranaImport, $request->file);
-        $count = 0;
-        $i = 1;
+        if (!$validator->passes()) {
+            return redirect('/upload')->withErrors('info', "error");
+        } else {
+            //$array = Excel::toCollection(new SaranaImport, $request->file);
+            $array = Excel::toArray(new SaranaImport, $request->file);
+            $count = 0;
+            $i = 1;
 
-
-        print_r($array);
-        echo "<br>------------------------------------<br>";
-
-        for ($j = 0; $j <  count($array[0]); $j++) {
-            for ($i = 0; $i < count($array[0][0]); $i++) {
-                $serial_number = $array[0][$j][$i];
-                foreach (Sarana::all() as $data) {
-                    if ($data->sn == $serial_number) {
-                        $info =  "serial number sudah ada " . $serial_number;
-                        return redirect('/upload')->with('info', $info);
+            //cek serial number di sistem 
+            for ($j = 0; $j <  count($array[0]); $j++) {
+                for ($i = 0; $i < count($array[0][0]); $i++) {
+                    $serial_number = $array[0][$j][$i];
+                    foreach (Sarana::all() as $data) {
+                        if ($data->sn == $serial_number) {
+                            $info =  "serial number sudah ada " . $serial_number;
+                            return redirect('/upload')->with('info', $info);
+                        }
                     }
                 }
             }
-        }
 
-        $p = Excel::import(new SaranaImport, $request->file('file'));
-        if ($p) {
-            return back()->with('success', 'data sarana berhasil ditambah ke master');
-        } else {
-            return back()->with('success', 'gagal upload file ');
+            //proses import data ke database
+            $p = Excel::import(new SaranaImport, $request->file('file'));
+            if ($p) {
+                return back()->with('success', 'data sarana berhasil ditambah ke master');
+            } else {
+                return back()->with('success', 'gagal upload file ');
+            }
         }
     }
 }
