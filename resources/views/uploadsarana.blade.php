@@ -24,22 +24,10 @@
     @csrf
     <div class="form-group">
         <input type="file" onchange="return exe()" id="fileUpload" name="file" class="form-control">
-
-        {{ $error }}
+        @foreach($errors->all() as $error)
+        <span class="text-danger small">*{{ $error }}*</span>
+        @endforeach
     </div>
     <button type="submit" class="btn btn-danger">Upload</button>
 </form>
 @endsection
-
-<script>
-    function exe() {
-        var file = document.getElementById("fileUpload");
-        var path = file.value;
-        var exe = /(\.csv|\.CSV)$/i;
-        if (!exe.exec(path)) {
-            alert("error");
-            file.value = "";
-            return;
-        }
-    }
-</script>

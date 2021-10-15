@@ -286,3 +286,20 @@ $(function(){
       })
   })
 })
+
+
+//validasi file yang di upload
+function exe() {
+    var file = document.getElementById("fileUpload");
+    var path = file.value;
+    var exe = /(\.csv|\.CSV)$/i;
+    if (!exe.exec(path)) {
+        swal({
+            icon : "warning",
+            title : "File di Tolak" , 
+            dangerMode : [true,"Ok"]
+        });
+        file.value = "";
+        return;
+    }
+}

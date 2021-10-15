@@ -83,7 +83,7 @@ class AddController extends Controller
         ]);
 
         if (!$validator->passes()) {
-            return redirect('/upload')->withErrors('info', "error");
+            return redirect('/upload')->withErrors($validator)->withInput();
         } else {
             //$array = Excel::toCollection(new SaranaImport, $request->file);
             $array = Excel::toArray(new SaranaImport, $request->file);
