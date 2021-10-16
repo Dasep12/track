@@ -17,6 +17,8 @@ class MusnahController extends Controller
             $daftar_barang  = Service::where('status_approved', 'Usulan Musnah')->get();
         } else if ($_GET['page'] == 2) {
             $daftar_barang    = Musnah::all();
+        } else if ($_GET['page'] != 1 || $_GET['page'] != 2) {
+            return "page not view";
         }
 
         $data = [

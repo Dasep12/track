@@ -31,7 +31,9 @@
                         <tr>
                             <th># </th>
                             <th width="15%">No Antrian</th>
-                            <th width="15%">Aksi</th>
+                            @if($page == 1)
+                            {! <th width="15%">Aksi</th> !}
+                            @endif
                             <th>Status</th>
                             <th>Unit</th>
                             <th>Aktiva</th>
@@ -45,6 +47,7 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $brg->no_antrian }}</td>
+                            @if($page == 1)
                             <td>
 
                                 <!-- jika role spv (1) maka tanda approve akan muncul  -->
@@ -54,7 +57,18 @@
                                 <a onclick="javascript:hapus('{{ $brg->id }}', '<?= route('updateBarang') ?>' , '{{ csrf_token() }}')" class="tip btn btn-danger btn-sm"><i class="fa fa-trash-o"></i><span>Batalkan Pemusnahan</span> </a>
                                 @endif
                             </td>
-                            <td>{{$brg->status_approved }}</td>
+                            @endif
+                            <td>
+                                @if($page == 1)
+                                <label class="label label-danger">
+                                    {{$brg->status_approved }}
+                                </label>
+                                @elseif($page == 2)
+                                <label class="label label-danger">
+                                    {{$brg->status }}
+                                </label>
+                                @endif
+                            </td>
                             <td>{{$brg->sarana}}</td>
                             <td> {{ $brg->aktiva }}</td>
                             <td>{{ $brg->sn }}</td>
