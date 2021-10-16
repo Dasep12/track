@@ -20,8 +20,10 @@ class MusnahController extends Controller
         }
 
         $data = [
-            'daftar_barang'  => $daftar_barang,
-            'page'           => $_GET['page'],
+            'daftar_barang'      => $daftar_barang,
+            'page'               => $_GET['page'],
+            'countMusnah'        => Musnah::count(),
+            'countusulan'        => Service::where('status_approved', 'Usulan Musnah')->get()
         ];
         return view('barangMusnah', $data);
     }
@@ -64,7 +66,7 @@ class MusnahController extends Controller
             'sn'                => $dataMusnah->sn,
             'aktiva'            => $dataMusnah->aktiva,
             'tgl_service'       => $dataMusnah->tgl_diterima,
-            'tgl_service'       => $dataMusnah->tgl_diterima,
+            'selesai_service'   => $dataMusnah->selesai_service,
             'tanggal_musnah'    => date('Y-m-d'),
             'status'            => 'Dimusnahkan',
             'info'              => $dataMusnah->info,

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\MasterController;
 use App\Http\Controllers\MusnahController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,4 @@ Route::post('/addsarana', [AddController::class, 'store']);
 
 Route::post('/upload', [AddController::class, 'fileImport']);
 Route::get('/upload', [AddController::class, 'formUpload']);
+Route::get('/master', [MasterController::class, 'index']);
