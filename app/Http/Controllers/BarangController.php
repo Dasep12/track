@@ -91,6 +91,14 @@ class BarangController extends Controller
         if ($_GET['status'] == "Dalam Antrian") {
             $data->tgl_diterima = date('Y-m-d');
         }
+
+        if ($_GET['status'] == "Proses Service") {
+            $data->tgl_service = date('Y-m-d');
+        }
+
+        if ($_GET['status'] == "Selesai Service") {
+            $data->selesai_service = date('Y-m-d');
+        }
         $data->update();
         echo "Success";
     }
