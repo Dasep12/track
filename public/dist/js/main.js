@@ -303,3 +303,46 @@ function exe() {
         return;
     }
 }
+
+
+//page addUser
+// UserController.php
+// view tambahuser
+$(function(){
+  $("#addUser").on('submit',function(e){
+    e.preventDefault();
+      $.ajax({
+        url : $(this).attr('action') ,
+        method : $(this).attr('method') ,
+        data : new FormData(this) ,
+        contentType : false ,
+        processData : false ,
+        beforeSend : function(){
+            //$(".btn").attr('disabled',true);
+            $(document).find("span.error-text").text("");
+          },
+          success : function(result){
+
+            if(result.msg == 0 ){
+              $.each(result.error, function (prefix, val) {
+                $("span." + prefix + "_error").html('<i class="fa fa-times-circle-o"></i> '  +val[0]);
+              });
+            }else if(result.msg == 1) {
+                swal({
+                  icon : "success" ,
+                  title : result.pesan ,
+                }).then(function(){
+                  location.reload();
+                })
+            }else if(result.msg == 2){
+              alert(result.error);
+            }
+          },
+          complete : function(){
+              $(".btn").attr('disabled',false);
+          }
+      })
+  })
+})
+
+// end of file 
