@@ -32,7 +32,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect('dashboard');
         } else {
-            return "akun tidak ada";
+            return redirect('/')->with('info', 'Perhatian ! akun tidak ada');
         }
     }
 

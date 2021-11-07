@@ -55,6 +55,9 @@
                     </div>
                     <!-- /.col -->
                 </div>
+                @if(Session('info'))
+                <span class="text-danger small">{{ Session('info') }}</span>
+                @endif
             </form>
 
         </div>
