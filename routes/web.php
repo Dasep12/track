@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\AddController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\MusnahController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +23,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'index']);
 
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/inputservice', [InputController::class, 'index']);
 Route::post('/inputservice', [InputController::class, 'store']);
@@ -44,3 +46,7 @@ Route::get('/master', [MasterController::class, 'index']);
 Route::get('/addUser', [UserController::class, 'addUser']);
 Route::post('/addUser', [UserController::class, 'storeUser'])->name('postuser');
 Route::get('/user', [UserController::class, 'index']);
+
+
+Route::post('/login', [LoginController::class, 'cekLogin']);
+Route::get('/logout', [LoginController::class, 'logout']);

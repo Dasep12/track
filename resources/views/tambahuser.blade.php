@@ -18,7 +18,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label>Kode Gudang</label>
-                        <input type="text" name="kode_dc" class="form-control">
+                        <input type="text" value="{{ $dc }}" readonly name="kode_dc" class="form-control">
                         <span class="text-danger small error-text kode_dc_error"></span>
                     </div>
                     <div class="form-group">

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Musnah;
 use App\Models\Sarana;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class MusnahController extends Controller
@@ -20,12 +22,16 @@ class MusnahController extends Controller
         } else if ($_GET['page'] != 1 || $_GET['page'] != 2) {
             return "page not view";
         }
-
+        $d  = User::find(Auth::id());
         $data = [
             'daftar_barang'      => $daftar_barang,
             'page'               => $_GET['page'],
             'countMusnah'        => Musnah::count(),
-            'countusulan'        => Service::where('status_approved', 'Usulan Musnah')->get()
+            'countusulan'        => Service::where('status_approved', 'Usulan Musnah')->get(),
+            'role_'              => $d->role,
+            'name'               => $d->name,
+            'dc'                 => $d->kode_dc,
+            'mail'               => $d->email
         ];
         return view('barangMusnah', $data);
     }

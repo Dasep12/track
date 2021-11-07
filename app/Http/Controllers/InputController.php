@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Sarana;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class InputController extends Controller
@@ -13,8 +15,13 @@ class InputController extends Controller
 
     public function index()
     {
+        $d  = User::find(Auth::id());
         $data = [
-            'data'   => Sarana::where('kode_dc', "G001")->where('status', 'AKTIF')->get()
+            'data'   => Sarana::where('kode_dc', "G001")->where('status', 'AKTIF')->get(),
+            'role_'  => $d->role,
+            'name'   => $d->name,
+            'dc'     => $d->kode_dc,
+            'mail'   => $d->email
         ];
         return view('inputbarang', $data);
     }

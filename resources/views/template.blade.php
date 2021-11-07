@@ -76,40 +76,26 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs" style="text-transform: uppercase;">{{ $name }}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
                   <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                  <p>
-                    Dasep - Web Programmer
-                    <small>Member since Nov. 2012</small>
+                  <p style="text-transform: uppercase;">
+                    {{ $name }} - {{ $dc }}
+                    <small>{{ $mail }}</small>
                   </p>
                 </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                  <!-- /.row -->
-                </li>
+
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -129,7 +115,7 @@
             <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Alexander Pierce</p>
+            <p>{{ $name }}</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -147,8 +133,40 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="">
-            <a href="#">
+
+
+          <!-- menu daftar ga  -->
+          @if($role_ == 3)
+          <li class="
+              @if(request()->is('dashboard') )
+                {{ 'active' }}
+              @endif
+              ">
+            <a href="/dashboard">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="
+              @if(request()->is('barang') )
+                {{ 'active' }}
+              @endif
+              ">
+            <a href="/barang?page=2">
+              <i class="fa fa-cog"></i> <span>Daftar Barang</span>
+            </a>
+          </li>
+          <!-- end menu ga  -->
+
+
+
+          <!-- menu support dan spv -->
+          @elseif($role_ == 2 || $role_ == 1 )
+          <li class="
+              @if(request()->is('dashboard') )
+                {{ 'active' }}
+              @endif
+              ">
+            <a href="/dashboard">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
@@ -181,7 +199,7 @@
           </li>
 
           <li class="treeview 
-          @if(request()->is('master') || request()->is('addbarang') || request()->is('upload'))
+          @if(request()->is('master') || request()->is('addsarana') || request()->is('upload') )
            {{ 'active' }}
           @endif ">
             <a href="#">
@@ -208,15 +226,15 @@
             </ul>
           </li>
           <li class="treeview 
-          @if(request()->is('addUser') )
+          @if(request()->is('addUser')  ||  request()->is('user') )
              {{ 'active' }}
-          @endif"">
+          @endif">
             <a href=" #">
-            <i class="fa fa-users"></i>
-            <span>Users</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+              <i class="fa fa-users"></i>
+              <span>Users</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
             </a>
             <ul class="treeview-menu">
               <li class="
@@ -238,8 +256,7 @@
               <i class="fa fa-trash"></i> <span>Pemusnahan</span>
             </a>
           </li>
-
-
+          @endif
 
         </ul>
         </li>

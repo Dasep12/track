@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Sarana;
 use App\Imports\SaranaImport;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AddController extends Controller
@@ -14,7 +16,14 @@ class AddController extends Controller
 
     public function index()
     {
-        return view('addsarana');
+        $d  = User::find(Auth::id());
+        $data = [
+            'role_'  => $d->role,
+            'name'   => $d->name,
+            'dc'     => $d->kode_dc,
+            'mail'   => $d->email
+        ];
+        return view('addsarana', $data);
     }
 
 
@@ -71,7 +80,14 @@ class AddController extends Controller
 
     public function formUpload(Type $var = null)
     {
-        return view('uploadsarana');
+        $d  = User::find(Auth::id());
+        $data = [
+            'role_'  => $d->role,
+            'name'   => $d->name,
+            'dc'     => $d->kode_dc,
+            'mail'   => $d->email
+        ];
+        return view('uploadsarana', $data);
     }
 
     public function fileImport(Request $request)
@@ -81,7 +97,6 @@ class AddController extends Controller
         ], [
             'file.required' => 'tidak ada file terpilih'
         ]);
-
         if (!$validator->passes()) {
             return redirect('/upload')->withErrors($validator)->withInput();
         } else {

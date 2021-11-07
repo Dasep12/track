@@ -2,7 +2,7 @@
 
 
 @section('content')
-@php($role = 3)
+@php($role = $role_ )
 <div class="row">
 
   <div class="col-xs-12">

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Sarana;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -13,6 +15,7 @@ class BarangController extends Controller
     {
         $pge = $_GET['page'];
         $kodeDC = "G001";
+        $d  = User::find(Auth::id());
         $status_approved = null;
         if ($pge == 1) {
             $status_approved = "Menunggu Approved";
@@ -45,6 +48,7 @@ class BarangController extends Controller
 
         $data = [
             'page'               => $pge,
+            'role_'              => $d->role,
             'daftar_barang'      => $barang,
             'countService'       => $Jumlah0->count(),
             'countService1'      => $Jumlah1->count(),
@@ -52,6 +56,10 @@ class BarangController extends Controller
             'countService3'      => $Jumlah3->count(),
             'countService4'      => $Jumlah4->count(),
             'countService5'      => $Jumlah5->count(),
+            'role_'              => $d->role,
+            'name'               => $d->name,
+            'dc'                 => $d->kode_dc,
+            'mail'               => $d->email
         ];
         return view('daftarbarang', $data);
     }
@@ -60,6 +68,7 @@ class BarangController extends Controller
     public function detailModal()
     {
         $id  = $_GET['id'];
+        $d  = User::find(Auth::id());
         $data = [
             'barang'  => Service::find($id)
         ];

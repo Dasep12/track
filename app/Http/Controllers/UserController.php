@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,15 +14,27 @@ class UserController extends Controller
 
     public function index()
     {
+        $d  = User::find(Auth::id());
         $data = [
-            'user'  => User::all()
+            'user'  => User::all(),
+            'role_'  => $d->role,
+            'name'   => $d->name,
+            'dc'     => $d->kode_dc,
+            'mail'   => $d->email
         ];
         return  view('user', $data);
     }
 
     public function addUser()
     {
-        return view('tambahuser');
+        $d  = User::find(Auth::id());
+        $data = [
+            'role_'  => $d->role,
+            'name'   => $d->name,
+            'dc'     => $d->kode_dc,
+            'mail'   => $d->email
+        ];
+        return view('tambahuser', $data);
     }
 
     public function storeUser(Request $req)
@@ -59,7 +72,7 @@ class UserController extends Controller
                 'name'                  => $req->name,
                 'email'                 => $req->email,
                 'password'              => Hash::make($req->password),
-                'email_verified_at'     => date('Y-m-d H:i:s'),
+                'email_verified_at'     => \Carbon\Carbon::now(),
                 'role'                  => $req->role
             ]);
             return response()->json([
