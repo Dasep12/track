@@ -6,13 +6,13 @@
 <div class="row">
 
   <div class="col-xs-12">
-    @if($role == 1)
+    <!-- @if($role == 1)
     {{ 'mode spv' }}
     @elseif($role == 2)
     {{ 'mode support' }}
     @elseif($role == 3)
     {{ 'mode GA' }}
-    @endif
+    @endif -->
     <div class="box box-primary">
       <ul class="nav nav-pills">
         @if($role == 1 || $role == 2)

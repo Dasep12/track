@@ -40,7 +40,7 @@
             <form name="login" action="/login" method="post">
                 @csrf
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" name="email" placeholder="Email">
+                    <input type="email" value="{{ old('email') }}" class="form-control" name="email" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -57,6 +57,13 @@
                 </div>
                 @if(Session('info'))
                 <span class="text-danger small">{{ Session('info') }}</span>
+                @endif
+                @if(count($errors) > 0 )
+                <p class="text-danger small">
+                    @foreach($errors->all() as $e)
+                    Perhatian {{ $e }} <br>
+                    @endforeach
+                </p>
                 @endif
             </form>
 

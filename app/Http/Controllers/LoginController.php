@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -22,17 +23,30 @@ class LoginController extends Controller
         $email   = $req->email;
         $pwd     = $req->password;
 
-        $data = [
-            'email'      => $email,
-            'password'   => $pwd
-        ];
+        $validation = Validator::make($req->all(), [
+            'email'       => 'required|email',
+            'password'   => 'required'
+        ], [
+            'email.required'            => 'isi email',
+            'password.required'         => 'isi password'
+        ]);
 
-        Auth::attempt($data);
-
-        if (Auth::check()) {
-            return redirect('dashboard');
+        if (!$validation->passes()) {
+            return redirect('/')->withErrors($validation)
+                ->withInput();
         } else {
-            return redirect('/')->with('info', 'Perhatian ! akun tidak ada');
+            $data = [
+                'email'      => $email,
+                'password'   => $pwd
+            ];
+
+            Auth::attempt($data);
+
+            if (Auth::check()) {
+                return redirect('dashboard');
+            } else {
+                return redirect('/')->with('info', 'Perhatian ! akun tidak ada');
+            }
         }
     }
 
