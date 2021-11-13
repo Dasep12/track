@@ -11,6 +11,7 @@ class DashboardController extends Controller
     //
     public function index()
     {
+        //  echo Auth::user()->role;
         $d  = User::find(Auth::id());
         $data = [
             'role_'  => $d->role,
