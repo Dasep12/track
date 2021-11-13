@@ -89,7 +89,7 @@ class BarangController extends Controller
     {
         $data = Service::find($_GET['id']);
         $data->status_approved = $_GET['status'];
-        $data->tgl_approved = date('Y-m-d');
+        $data->tgl_approved = date('Y-m-d h:i:s');
         $data->nama_approved = "Andika";
         if ($_GET['status'] ==  "Sudah Di Kirim") {
             $upd = Sarana::where('sn', $data->sn)->first();
@@ -98,15 +98,15 @@ class BarangController extends Controller
         }
 
         if ($_GET['status'] == "Dalam Antrian") {
-            $data->tgl_diterima = date('Y-m-d');
+            $data->tgl_diterima = date('Y-m-d  h:i:s');
         }
 
         if ($_GET['status'] == "Proses Service") {
-            $data->tgl_service = date('Y-m-d');
+            $data->tgl_service = date('Y-m-d  h:i:s');
         }
 
         if ($_GET['status'] == "Selesai Service") {
-            $data->selesai_service = date('Y-m-d');
+            $data->selesai_service = date('Y-m-d  h:i:s');
         }
         $data->update();
         echo "Success";

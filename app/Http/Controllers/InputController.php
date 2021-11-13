@@ -58,7 +58,7 @@ class InputController extends Controller
                 'nama_pic'          => $req->nama_pic,
                 'nik_pic'           => $req->nik_pic,
                 'tujuan'            => $req->tujuan,
-                'tanggal_kirim'     => date('Y-m-d'),
+                'tanggal_kirim'     => date('Y-m-d h:i:s'),
                 'tgl_diterima'      => "null",
                 'status_approved'   => "Menunggu Approved",
                 'tgl_approved'      => "-",
